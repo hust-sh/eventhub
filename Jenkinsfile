@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker 'go:1.9.2' }
+    agent { docker 'golang:1.9.2' }
     stages {
         stage('Dependency') {
             steps {
