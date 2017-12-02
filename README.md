@@ -2,7 +2,7 @@
 
 This is a golang hobby project.
 
-# Get started
+## Get started
 
         docker-compose up -d
         curl localhost/
