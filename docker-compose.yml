@@ -1,0 +1,17 @@
+version: "2"
+services:
+  eventhub:
+    build: eventhub
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./eventhub:/go/src/app
+    ports:
+      - "80:8080"
+    environment:
+      ENV: dev
+  redis:
+    image: redis:alpine
+    ports:
+      - "3004:6379"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
