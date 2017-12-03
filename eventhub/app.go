@@ -1,7 +1,6 @@
 package main
 
 import (
-    "github.com/gin-gonic/gin"
     "log"
     "net/http"
     "os"
@@ -10,28 +9,12 @@ import (
     "context"
 )
 
-func setRouter() *gin.Engine {
-
-    router := gin.Default()
-    router.GET("/ping", func(c *gin.Context) {
-        c.JSON(200, gin.H{
-            "message": "pong",
-        })
-    })
-
-    router.GET("/", func(c *gin.Context) {
-        c.String(http.StatusOK, "Welcome Eventhub")
-    })
-
-    return router
-}
-
 func main() {
 
     router := setRouter()
     
     srv := &http.Server{
-        Addr: ":8080",
+        Addr: ":3003",
         Handler: router,
     }
 

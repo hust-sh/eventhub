@@ -2,11 +2,13 @@ version: "2"
 services:
   eventhub:
     build: eventhub
+    links:
+      - redis
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./eventhub:/go/src/app
     ports:
-      - "80:8080"
+        - "3003:3003"
     environment:
       ENV: dev
   redis:
