@@ -10,7 +10,7 @@ This is a golang hobby project.
 
 ## Roadmap
 
-* webhook generator: eventhub生成器，用于告知其他服务（如Github）如何通知我们
+* webhook generator: eventhub的webhook生成器，用于告知其他服务（如Github）如何通知我们
 * log system
 * Jira
 * Oauth2: 很多服务需要Oauth流程（如Trello, google apps）
