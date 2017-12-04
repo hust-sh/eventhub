@@ -42,12 +42,5 @@ func webhookHandler(c *gin.Context) {
     data := siteHandler.Transform(c)
     log.Printf("data: %v", data)
     c.JSON(http.StatusOK, data)
-    
-    /*
-    var hook HookInfo
-    c.BindJSON(&hook)
-    log.Printf("site:%s, access_token:%s, hook:%v", site, accessToken, hook)
-    c.JSON(http.StatusOK, gin.H{"site": site, "access_token": accessToken, "url": hook.Build.Url})
-    */
 
 }
