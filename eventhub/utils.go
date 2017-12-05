@@ -34,6 +34,12 @@ func IsValidSiteType(site string) bool {
 
 func GetWebhook(site string, token string) (string, error) {
 
-    redisCli, _ := redis.DialURL(RedisUrl)
+    redisCli, _ :=  GetRedis()
     return redis.String(redisCli.Do("HGET", site, token))
+}
+
+
+func GetRedis() (redis.Conn, error) {
+
+    return redis.DialURL(RedisUrl)
 }

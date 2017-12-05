@@ -4,7 +4,6 @@ import (
     "github.com/gin-gonic/gin"
     "net/http"
     "log"
-    "github.com/garyburd/redigo/redis"
 )
 
 
@@ -22,6 +21,7 @@ func setRouter() *gin.Engine {
     })
 
     router.POST("/webhook/:site/:access_token", webhookHandler) 
+
     router.POST("/genhook", genWebhookHandler)
 
     return router
@@ -76,7 +76,7 @@ func genWebhookHandler(c *gin.Context) {
         return
     }
 
-    redisCli, err := redis.DialURL(RedisUrl)
+    redisCli, err := GetRedis()
     if err != nil {
         log.Printf("Dial redis failed. %v", err)
         c.JSON(http.StatusOK, gin.H{"err": "Dial redis Failed"})
