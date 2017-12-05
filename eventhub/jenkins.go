@@ -3,9 +3,10 @@ package main
 import (
     "github.com/gin-gonic/gin"
     "fmt"
+    "log"
 )
 
-type HookInfo struct {
+type JenkinsMsgInfo struct {
     Name string `json:"display_name" binding:"required"`
     Build struct {
         Url string `json:"url" binding:"required"`
@@ -20,13 +21,13 @@ type Jenkins struct {
 
 func (j Jenkins) Transform(c *gin.Context) gin.H {
 
-    var hook HookInfo
+    var hook JenkinsMsgInfo
     c.BindJSON(&hook)
 
     return j.PackMsg(hook)
 }
 
-func (_ Jenkins) PackMsg(h HookInfo) gin.H {
+func (_ Jenkins) PackMsg(h JenkinsMsgInfo) gin.H {
 
     phase := h.Build.Phase
     var title string
@@ -47,5 +48,10 @@ func (_ Jenkins) PackMsg(h HookInfo) gin.H {
         "msgtype": "markdown",
         "markdown": gin.H {"title": title, "text": text},
     }
+}
+
+func (_ Jenkins) SendMsg(webhook string, data gin.H) {
+
+    log.Printf("send data:%v to %s", data, webhook)
 }
 

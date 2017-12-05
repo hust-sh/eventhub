@@ -6,7 +6,7 @@ import (
 
 type Sites interface {
     Transform(c *gin.Context) gin.H
-    //SendMsg(data gin.H)
+    SendMsg(webhook string, data gin.H)
 }
 
 
