@@ -20,13 +20,14 @@ This is a golang hobby project.
     * `Authorization callback URL`这栏填`http://localhost:3003/callback/github`
     * 创建成功后保存`client_id`和`secret`
 
-  * 将上述的cleing_id和secret设置为环境变量(替换下述的client和secret)
+  * 将上述的client ID和client secret设置为环境变量(替换下述的client_id和secret)
 
         export $GITHUBKEY=client_id
         export $GITHUB_SECRET=secret
 
   * docker-compose build --pull && docker-compose up -d
-  * 前往浏览器输入`http://localhost:3003/siteentry`
+  * 前往浏览器输入`http://localhost:3003/siteentry`，并点击页面上的超链接(发起oauth请求）
+  * oauth成功的话，浏览器将显示"Hello [your-github-name]"
 
 
 ## Roadmap

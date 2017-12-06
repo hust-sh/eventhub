@@ -82,7 +82,7 @@ Google 授权过程：
 Inspired by https://jacobmartins.com/2016/02/29/getting-started-with-oauth2-in-go/ 
 */
 import (
-	"fmt"
+    "fmt"
 	"net/http"
 	"golang.org/x/oauth2"
     "log"
@@ -104,24 +104,25 @@ func SiteEntryHandler(c *gin.Context) {
 func GithubLoginHandler(c *gin.Context) {
 	url := githubOauthConfig.AuthCodeURL(githubStateString)
     log.Printf(url)
-	http.Redirect(c.Writer, c.Request, url, http.StatusTemporaryRedirect)
+    c.Redirect(http.StatusTemporaryRedirect, url)
 }
 
 
 func GithubCallbackHandler(c *gin.Context) {
-    state := c.Request.FormValue("state") // todo: use gin methed
+
+    state := c.Query("state")
 	if state != githubStateString {
 		log.Printf("invalid oauth state, expected '%s', got '%s'\n", githubStateString, state)
-		http.Redirect(c.Writer, c.Request, "/siteentry", http.StatusTemporaryRedirect)
+        c.Redirect(http.StatusTemporaryRedirect, "/siteentry")
 		return
 	}
 
-	code := c.Request.FormValue("code")
+	code := c.Query("code")
     log.Printf("code:%s", code)
 	token, err := githubOauthConfig.Exchange(oauth2.NoContext, code)
 	if err != nil {
 		log.Printf("oauthConf.Exchange() failed with '%s'\n", err)
-		http.Redirect(c.Writer, c.Request, "/siteentry", http.StatusTemporaryRedirect)
+        c.Redirect(http.StatusTemporaryRedirect, "/siteentry")
 		return
 	}
     log.Printf("token: %s", token.AccessToken)
@@ -131,7 +132,7 @@ func GithubCallbackHandler(c *gin.Context) {
     user, _, err := client.Users.Get(c, "")
     if err != nil {
         log.Printf("client.User.Get() failed with %s\n", err)
-		http.Redirect(c.Writer, c.Request, "/siteentry", http.StatusTemporaryRedirect)
+        c.Redirect(http.StatusTemporaryRedirect, "/siteentry")
     }
 
     log.Printf("Logged in as Github user:%s", *user.Login)
