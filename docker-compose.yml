@@ -11,6 +11,8 @@ services:
         - "3003:3003"
     environment:
       ENV: dev
+      GITHUBKEY: $GITHUBKEY
+      GITHUB_SECRET: $GITHUB_SECRET
   redis:
     image: redis:alpine
     ports:

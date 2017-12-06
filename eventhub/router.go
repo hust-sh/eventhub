@@ -24,6 +24,11 @@ func setRouter() *gin.Engine {
 
     router.POST("/genhook", genWebhookHandler)
 
+    // Oauth request
+    router.GET("/siteentry", SiteEntryHandler)
+    router.GET("/githublogin", GithubLoginHandler)
+    router.GET("/callback/github", GithubCallbackHandler)
+
     return router
 }
 
