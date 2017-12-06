@@ -14,8 +14,8 @@ This is a golang hobby project.
 
 ## Oauth
 
-* 原理可[参考](http://www.yangluoshen.site/note/5a161048839da05966000001)
-* eventhub oauth github:
+* 原理可[参考](http://www.yangluoshen.site/blog/post/yangluoshen/Oauth2)
+* eventhub oauth github ([API docs](https://developer.github.com/apps/building-integrations/setting-up-and-registering-oauth-apps/)):
   * 首先创建[github app](https://github.com/settings/developers)([how to](https://developer.github.com/apps/building-integrations/setting-up-and-registering-oauth-apps/registering-oauth-apps/))
     * `Authorization callback URL`这栏填`http://localhost:3003/callback/github`
     * 创建成功后保存`client_id`和`secret`
