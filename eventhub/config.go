@@ -15,7 +15,7 @@ var (
                         RedirectURL:  "http://localhost:3003/callback/github",
                         ClientID:     os.Getenv("GITHUBKEY"), 
                         ClientSecret: os.Getenv("GITHUB_SECRET"),
-                        Scopes:       []string{"user", "gist"},
+                        Scopes:       []string{"user", "repo"},
                         Endpoint:     github.Endpoint}
     githubStateString = "mock"
 )
