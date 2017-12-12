@@ -1,6 +1,7 @@
 package main
 
 import (
+    "fmt"
     "github.com/gin-gonic/gin"
     "net/http"
     "log"
@@ -26,8 +27,12 @@ func setRouter() *gin.Engine {
 
     // Oauth request
     router.GET("/siteentry", SiteEntryHandler)
+    // github
     router.GET("/githublogin", GithubLoginHandler)
     router.GET("/callback/github", GithubCallbackHandler)
+    // google
+    router.GET("/googlelogin", GoogleLoginHandler)
+    router.GET("/callback/google", GoogleCallbackHandler)
 
     return router
 }
@@ -100,4 +105,8 @@ func genWebhookHandler(c *gin.Context) {
         "err": "Success",
         "webhook": GenWebhook(site, accessToken, c.Request),
     })
+}
+
+func SiteEntryHandler(c *gin.Context) {
+    fmt.Fprintf(c.Writer, htmlIndex)
 }

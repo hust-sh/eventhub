@@ -7,15 +7,20 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./eventhub/:/go/src/app
+      - eventhub_volume:/go/src
     ports:
         - "3003:3003"
     environment:
       ENV: dev
       GITHUBKEY: $GITHUBKEY
       GITHUB_SECRET: $GITHUB_SECRET
+      GOOGLEKEY: $GOOGLEKEY
+      GOOGLE_SECRET: $GOOGLE_SECRET
   redis:
     image: redis:alpine
     ports:
       - "6379:6379"
     volumes:
       - /etc/localtime:/etc/localtime:ro
+volumes:
+  eventhub_volume:
